@@ -26,7 +26,7 @@
         </div>
         <div class="row rowNotes" style="margin-top: 50px;">
             <div class="col-sm-5 btn-group">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNoteModal" id="anyadirNota" onclick="showAddNoteModal()">Add note</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNoteModal" id="btnShowModalAddNote">Add note</button>
                 <button type="button" class="btn btn-danger" id="borrarNota" onclick="showDeleteNoteModal()">Delete note</button>
             </div>
         </div>
@@ -53,7 +53,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="addNote()">Add</button>
+              <button type="button" class="btn btn-primary" id="btnAddNote">Add</button>
             </div>
           </div>
         </div>

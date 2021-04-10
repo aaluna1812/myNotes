@@ -24,42 +24,28 @@ function loadNotes(){
     xhr.send();
 }
 
-function showAddNoteModal(){
+function showAddNoteModal(e){
+    e.preventDefault();
     document.getElementById('titleNoteForm').value = '';
     document.getElementById('newNoteForm').value = '';
+    //document.querySelector("#addNoteModal").display = 'block';
     $("#addNoteModal").modal('show');
 }
 
-function addNote(){
-
+function addNote(e){
+    e.preventDefault();
     let noteTitle = document.getElementById('titleNoteForm').value;
     let newNote = document.getElementById('newNoteForm').value;
-
-    if (!newNote && !noteTitle) {
-        alert("Sorry. If you don't write a note I can't save it")
-    }else{
-        let divNote = document.createElement('div');
-        divNote.className = 'colNota';
-        //divNote.id = "nota"
-        let title = document.createElement('p');
-        title.className = "h4";
-        title.id = "titleNote";
-        let note = document.createElement('p');
-        note.id = "note"
-        title.innerHTML = noteTitle;
-        note.innerHTML = newNote;
-        divNote.appendChild(note);
-        divNote.insertBefore(title, note)
-        document.getElementById('notasGuardadas').appendChild(divNote);
-        $("#addNoteModal").modal('hide');
-
-        console.log(document.getElementsByClassName('colNota').length);
-        addListener(true, noteTitle, newNote);
-    }
+    console.log(noteTitle);
+    console.log(newNote);
 }
 
 window.addEventListener('load', function(event){
     loadNotes();
+    const btnShowModalAddNote = document.querySelector("#btnShowModalAddNote");
+    const btnAddNote = document.querySelector("#btnAddNote");
+    btnShowModalAddNote.addEventListener("click",showAddNoteModal, false);
+    btnAddNote.addEventListener("click", addNote, false)
 });
 
 
