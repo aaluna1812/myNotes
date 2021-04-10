@@ -44,4 +44,14 @@ class QueryBuilder{
         }
         return $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // #ERR 002
+    public function addNote($noteTitle, $newNote){
+        $sql = "INSERT INTO ".$this->table."(title, note) VALUES('$noteTitle', '$newNote')";
+        $pdoStatement = $this->connection->prepare($sql);
+        if ($pdoStatement->execute() === false) {
+            throw new QueryBuilderException("The note could not be saved to the DB. #ERR 002");
+        }
+        return true;
+    }
 }
