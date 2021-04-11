@@ -27,16 +27,15 @@
         <div class="row rowNotes" style="margin-top: 50px;">
             <div class="col-sm-5 btn-group">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNoteModal" id="btnShowModalAddNote">Add note</button>
-                <button type="button" class="btn btn-danger" id="borrarNota" onclick="showDeleteNoteModal()">Delete note</button>
             </div>
         </div>
     </div>
     <!-- BLOQUE MODALES -->
-    <div class="modal fade" tabindex="-1" id="addNoteModal">
+    <div class="modal fade" tabindex="-1" id="addEditNoteModal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Add Note</h5>
+              <h5 class="modal-title" id="titleNote"></h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -52,8 +51,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="btnAddNote">Add</button>
+                <button type="button" class="btn btn-danger" id="btnDeleteNote" onclick="showDeleteNoteModal()">Delete</button>
+                <button type="button" class="btn btn-primary" id="btnEditNote">Edit</button>
+                <button type="button" class="btn btn-primary" id="btnAddNote">Add</button>
             </div>
           </div>
         </div>
