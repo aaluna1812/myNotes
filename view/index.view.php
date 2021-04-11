@@ -49,6 +49,7 @@
                         <textarea class="form-control" id="newNoteForm"></textarea>
                     </div>
                 </form>
+                <input type="hidden" id="idHiddenNote" value=""/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" id="btnDeleteNote" onclick="showDeleteNoteModal()">Delete</button>

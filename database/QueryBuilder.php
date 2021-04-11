@@ -54,4 +54,16 @@ class QueryBuilder{
         }
         return true;
     }
+
+    // #ERR 003
+    public function editNote($id, $noteTitle, $newNote){
+        $sql = "UPDATE ".$this->table." SET title = '$noteTitle', note = '$newNote' WHERE id = $id";
+        $pdoStatement = $this->connection->prepare($sql);
+        if ($pdoStatement->execute() === false) {
+            throw new QueryBuilderException("The note could not be saved to the DB. #ERR 003");
+        }else{
+            return true;
+        }
+        
+    }
 }
