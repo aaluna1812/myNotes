@@ -15,9 +15,9 @@ try{
             $respuesta = $queryNotes->addNote($noteTitle,$newNote);
             var_dump($respuesta);
             if ($respuesta === true){
-                echo '{"data":'.json_encode("true").'}';
+                echo json_encode("true");
             }else{
-                echo '{"data":'.json_encode("false").'}';
+                echo json_encode("false");
             }
         }
     }

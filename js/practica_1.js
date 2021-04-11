@@ -7,10 +7,14 @@ function loadNotes(){
             const respuestaHTML = document.getElementById('notesCol');
             let tpl = '';
             for (let i = 0, long = respuesta['data'].length; i < long; i++) {
-                tpl += "<div class='card' id='"+respuesta['data'][i]['id']+"'>"+
+                let id = respuesta['data'][i]['id'];
+                let title = respuesta['data'][i]['title'];
+                let note = respuesta['data'][i]['note'];
+                
+                tpl += "<div class='card note' id='"+id+"' onclick='showEditNoteModal("+id+")'>"+
                             "<div class='card-body'>"+
-                                "<h5 class='card-title'>"+respuesta['data'][i]['title']+"</h5>"+
-                                "<p class='card-text'>"+respuesta['data'][i]['note']+"</p>"+
+                                "<h5 class='card-title'>"+title+"</h5>"+
+                                "<p class='card-text'>"+note+"</p>"+
                             "</div>"+
                         "</div>";
             }
@@ -24,8 +28,11 @@ function loadNotes(){
 function showAddNoteModal(){
     document.getElementById('titleNoteForm').value = '';
     document.getElementById('newNoteForm').value = '';
-    //document.querySelector("#addNoteModal").display = 'block';
-    $("#addNoteModal").modal('show');
+    document.getElementById('titleNote').innerHTML = "Add Note";
+    document.getElementById('btnEditNote').style.display = 'none';
+    document.getElementById('btnDeleteNote').style.display = 'none';
+    //document.querySelector("#addEditNoteModal").modal('show');
+    $("#addEditNoteModal").modal('show');
 }
 
 function addNote(){
@@ -45,7 +52,7 @@ function addNote(){
                 // TODO => Falta com obtinc la resposta de l'arxiu addNote.php per controlar errors
                 //         Potser que no siga necessari ja que en la consulta esta posat per a que
                 //         mostre un error
-                $("#addNoteModal").modal('hide');
+                $("#addEditNoteModal").modal('hide');
                 loadNotes();
             }
         }
@@ -54,12 +61,28 @@ function addNote(){
     }
 }
 
+function showEditNoteModal(id){
+    const title = document.getElementById(id).getElementsByTagName('h5')[0].innerHTML;
+    const note = document.getElementById(id).getElementsByTagName('p')[0].innerHTML;
+    console.log(title);
+    console.log(note);
+    
+    document.getElementById('titleNoteForm').value = title;
+    document.getElementById('newNoteForm').value = note;
+    document.getElementById('titleNote').innerHTML = "Edit Note";
+    document.getElementById('btnAddNote').style.display = 'none';
+    //document.querySelector("#addEditNoteModal").modal('show');
+    console.log(id)
+    $("#addEditNoteModal").modal('show');
+    
+}
+
 window.addEventListener('load', function(event){
     loadNotes();
     const btnShowModalAddNote = document.querySelector("#btnShowModalAddNote");
     const btnAddNote = document.querySelector("#btnAddNote");
     btnShowModalAddNote.addEventListener("click",showAddNoteModal, false);
-    btnAddNote.addEventListener("click", addNote, false)
+    btnAddNote.addEventListener("click", addNote, false);
 });
 
 

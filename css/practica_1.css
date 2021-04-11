@@ -33,20 +33,20 @@ body{
     background-color: whitesmoke;
 }
 
-#notesCol{
+/*#notesCol{
     margin-left: 13rem;
-}
+}*/
 
 #notesCol .card{
     width: 50%;
 }
 
-#addNoteModal .modal-header{
+#addEditNoteModal .modal-header{
     background: coral;
     color: cornsilk;
 }
 
-#addNoteModal textarea{
+#addEditNoteModal textarea{
     resize: none;
 }
 
