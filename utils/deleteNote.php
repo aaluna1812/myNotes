@@ -8,11 +8,11 @@ try{
     $queryNotes = new QueryBuilder($connection, 'myNotes', '');
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $noteTitle = trim(htmlspecialchars($_POST['noteTitle']));
-        $newNote = trim(htmlspecialchars($_POST['newNote']));
+        $idNote = $_POST['idNote'];
 
-        if ($noteTitle && $newNote) {
-            $respuesta = $queryNotes->addNote($noteTitle,$newNote);
+        if ($idNote) {
+            $respuesta = $queryNotes->deleteNote(intval($idNote));
+
             if ($respuesta === true){
                 echo "exito";
             }else{

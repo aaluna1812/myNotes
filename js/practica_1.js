@@ -49,11 +49,13 @@ function addNote(){
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
-                // TODO => Falta com obtinc la resposta de l'arxiu addNote.php per controlar errors
-                //         Potser que no siga necessari ja que en la consulta esta posat per a que
-                //         mostre un error
-                $("#addEditNoteModal").modal('hide');
-                loadNotes();
+                if (this.responseText === "exito") {
+                    $("#addEditNoteModal").modal('hide');
+                    loadNotes();
+                } else {
+                    alert("The note could not be save to the DB. #ERR 003");
+                    $("#addEditNoteModal").modal('hide');
+                }
             }
         }
         xhr.open("POST", "utils/addNote.php", true);
@@ -66,6 +68,7 @@ function showEditNoteModal(id){
     const note = document.getElementById(id).getElementsByTagName('p')[0].innerHTML;
 
     document.getElementById('idHiddenNote').value = id;
+    document.getElementById('idHiddenDeleteNote').value = id;
     document.getElementById('titleNoteForm').value = title;
     document.getElementById('newNoteForm').value = note;
     document.getElementById('titleNote').innerHTML = "Edit Note";
@@ -77,7 +80,6 @@ function showEditNoteModal(id){
 
 function editNote(){
     const idNote = document.getElementById('idHiddenNote').value;
-    console.log("EL ID A EDITAR ES: " + idNote);
     
     const noteTitle = document.getElementById('titleNoteForm');
     const newNote = document.getElementById('newNoteForm');
@@ -93,11 +95,13 @@ function editNote(){
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
-                // TODO => Falta com obtinc la resposta de l'arxiu addNote.php per controlar errors
-                //         Potser que no siga necessari ja que en la consulta esta posat per a que
-                //         mostre un error
-                $("#addEditNoteModal").modal('hide');
-                loadNotes();
+                if (this.responseText === "exito") {
+                    $("#addEditNoteModal").modal('hide');
+                    loadNotes();
+                } else {
+                    alert("The note could not be update to the DB. #ERR 003");
+                    $("#addEditNoteModal").modal('hide');
+                }
             }
         }
         xhr.open("POST", "utils/editNote.php", true);
@@ -106,14 +110,48 @@ function editNote(){
 
 }
 
+function showDeleteNoteModal(){
+    //let id = document.getElementById('idHiddenDeleteNote').value;
+    $("#deleteNoteModal").modal('show');
+}
+
+function deleteNote(){
+    const idNote = document.getElementById('idHiddenDeleteNote').value;
+
+    let formData = new FormData();
+    formData.append("idNote", idNote);
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            if (this.responseText === "exito") {
+                $("#addEditNoteModal").modal('hide');
+                $("#deleteNoteModal").modal('hide');
+                loadNotes();
+            } else {
+                alert("The note could not be delete to the DB. #ERR 003");
+                $("#addEditNoteModal").modal('hide');
+                $("#deleteNoteModal").modal('hide');
+            }
+        }
+    }
+    xhr.open("POST", "utils/deleteNote.php", true);
+    xhr.send(formData);
+    
+}
+
 window.addEventListener('load', function(event){
     loadNotes();
     const btnShowModalAddNote = document.querySelector("#btnShowModalAddNote");
     const btnAddNote = document.querySelector("#btnAddNote");
     const btnEditNote = document.querySelector("#btnEditNote");
+    const btnDeleteNote =document.querySelector("#btnDeleteNote");
+    const btnDelete = document.querySelector("#btnDelete");
     btnShowModalAddNote.addEventListener("click",showAddNoteModal, false);
     btnAddNote.addEventListener("click", addNote, false);
     btnEditNote.addEventListener("click", editNote, false);
+    btnDeleteNote.addEventListener("click", showDeleteNoteModal, false);
+    btnDelete.addEventListener("click", deleteNote, false);
 });
 
 

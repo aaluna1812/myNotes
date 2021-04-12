@@ -45,14 +45,23 @@ class QueryBuilder{
         return $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    /** QueryBuilder addNote
+     * @param string $noteTitle
+     * @param string $newNote
+     * @throws QueryExceptions
+     */
     // #ERR 002
     public function addNote($noteTitle, $newNote){
-        $sql = "INSERT INTO ".$this->table."(title, note) VALUES('$noteTitle', '$newNote')";
+        $sql = "INSERT INTO ".$this->table."(title, note) VALUES(:noteTitle, :newNote)";
         $pdoStatement = $this->connection->prepare($sql);
+        $pdoStatement->bindParam(':noteTitle', $noteTitle);
+        $pdoStatement->bindParam(':newNote', $newNote);
         if ($pdoStatement->execute() === false) {
             throw new QueryBuilderException("The note could not be saved to the DB. #ERR 002");
+        }else{
+            return true;
         }
-        return true;
     }
 
     /** QueryBuilder editNote
@@ -64,7 +73,7 @@ class QueryBuilder{
 
     // #ERR 003
     public function editNote($id, $noteTitle, $newNote){
-          $sql = "UPDATE ".$this->table." SET title = :noteTitle, note = :newNote WHERE id = :id";
+        $sql = "UPDATE ".$this->table." SET title = :noteTitle, note = :newNote WHERE id = :id";
         $pdoStatement = $this->connection->prepare($sql);
         $pdoStatement->bindParam(':noteTitle', $noteTitle);
         $pdoStatement->bindParam(':newNote', $newNote);
@@ -75,4 +84,21 @@ class QueryBuilder{
             return true;
         } 
     }
+
+    /** QueryBuilder deleteNote
+     * @param int $id
+     * @throws QueryExceptions
+     */
+
+     // #ERR 004
+     public function deleteNote($id){
+        $sql = "DELETE FROM  ".$this->table." WHERE id = :id";
+        $pdoStatement = $this->connection->prepare($sql);
+        $pdoStatement->bindParam(':id', $id, PDO::PARAM_INT);
+        if ($pdoStatement->execute() === false) {
+            throw new QueryBuilderException("The note could not be delete to the DB. #ERR 003");
+        }else{
+            return true;
+        } 
+     }
 }

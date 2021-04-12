@@ -50,4 +50,8 @@ body{
     resize: none;
 }
 
+#deleteNoteModal .modal-header{
+    background: coral;
+    color: cornsilk;
+}
 
