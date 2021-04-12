@@ -15,18 +15,12 @@
 <body>
     <div class="container">
         <div class="row" id="board">
-            <div class="row rowNotes">
-                <h2 class="h4">My Notes</h2>
+            <h2 class="h4">My Notes</h2>
+            <div class="col-3">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNoteModal" id="btnShowModalAddNote">Add note</button>
             </div>
-            <div class="row rowNotes" id="noteBoard">
-                <div class="col-sm-3 btn-group">
-                    <button type="button" class="btn btn-primary align-bottom" data-toggle="modal" data-target="#addNoteModal" id="btnShowModalAddNote">Add note</button>
-                </div>
-                <div class="col-9">
-                    <div class="row" id="notasGuardadas">
-                        <div class="col-sm-12" id="notesCol"></div>
-                    </div>
-                </div>
+            <div class="col-9">
+                <div class="col-sm-12" id="notesCol"></div>
             </div>
         </div>
     </div>
