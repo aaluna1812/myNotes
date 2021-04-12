@@ -48,7 +48,7 @@ body{
 }
 
 #addEditNoteModal textarea{
-    resize: none;
+    resize: vertical;
 }
 
 #deleteNoteModal .modal-content{

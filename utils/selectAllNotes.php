@@ -8,7 +8,6 @@ try{
     $queryNotes = new QueryBuilder($connection, 'myNotes', '');
 
     $results = $queryNotes->takeAll();
-    //var_dump($result[0]['title']);
     foreach ($results as $res) {
         $id = $res['id'];
         $title = trim(htmlspecialchars($res['title']));

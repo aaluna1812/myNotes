@@ -23,7 +23,6 @@ class QueryBuilder{
      * @param string $table
      * @param string $classEntity
      */
-
     public function __construct(PDO $connection, $table, $classEntity){
         $this -> connection = $connection;
         $this -> table = $table;
@@ -34,7 +33,6 @@ class QueryBuilder{
      * @return array
     * @throws QueryExceptions
     */
-
     // #ERR 001
     public function takeAll(){
         $sql = 'SELECT * FROM '.$this->table;
@@ -70,7 +68,6 @@ class QueryBuilder{
      * @param string $newNote
      * @throws QueryExceptions
      */
-
     // #ERR 003
     public function editNote($id, $noteTitle, $newNote){
         $sql = "UPDATE ".$this->table." SET title = :noteTitle, note = :newNote WHERE id = :id";
@@ -89,7 +86,6 @@ class QueryBuilder{
      * @param int $id
      * @throws QueryExceptions
      */
-
      // #ERR 004
      public function deleteNote($id){
         $sql = "DELETE FROM  ".$this->table." WHERE id = :id";
