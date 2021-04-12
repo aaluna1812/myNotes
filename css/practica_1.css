@@ -9,28 +9,50 @@ body{
     height: 100%;
     background-color: white;
     margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 25px;
     padding-bottom: 50px;
 }
 
+#board{
+    width: 50%;
+    margin-left: auto;
+    margin-right: 15rem;
+    border: solid 1px;
+    border-radius: 1rem;
+}
+
+#noteBoard{
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .rowNotes{
     width: 100%;
-    padding-left: 10%;
-    padding-right: 10%;
-    margin-left: 70px;
 }
 
 .rowNotes  h2{
     text-decoration: underline;
     background-color: #00FA9A;
     text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
+}
+
+.rowNotes button{
+    height: max-content;
 }
 
 #notasGuardadas{
     margin-bottom: 20px;
-    background-color: whitesmoke;
+    background-color: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 96%;
+    height: 100%;
+    border: solid 1px rgb(71, 70, 70);
+    margin: 0%;
+    
 }
 
 /*#notesCol{
@@ -38,7 +60,7 @@ body{
 }*/
 
 #notesCol .card{
-    width: 50%;
+    width: 100%;
 }
 
 #addEditNoteModal .modal-header{
