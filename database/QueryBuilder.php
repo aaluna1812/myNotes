@@ -55,15 +55,24 @@ class QueryBuilder{
         return true;
     }
 
+    /** QueryBuilder editNote
+     * @param int $id
+     * @param string $noteTitle
+     * @param string $newNote
+     * @throws QueryExceptions
+     */
+
     // #ERR 003
     public function editNote($id, $noteTitle, $newNote){
-        $sql = "UPDATE ".$this->table." SET title = '$noteTitle', note = '$newNote' WHERE id = $id";
+          $sql = "UPDATE ".$this->table." SET title = :noteTitle, note = :newNote WHERE id = :id";
         $pdoStatement = $this->connection->prepare($sql);
+        $pdoStatement->bindParam(':noteTitle', $noteTitle);
+        $pdoStatement->bindParam(':newNote', $newNote);
+        $pdoStatement->bindParam(':id', $id, PDO::PARAM_INT);
         if ($pdoStatement->execute() === false) {
             throw new QueryBuilderException("The note could not be saved to the DB. #ERR 003");
         }else{
             return true;
-        }
-        
+        } 
     }
 }

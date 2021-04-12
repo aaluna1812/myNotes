@@ -13,7 +13,7 @@ try{
         $newNote = trim(htmlspecialchars($_POST['newNote']));
 
         if ($noteTitle && $newNote) {
-            $respuesta = $queryNotes->editNote($idNote, $noteTitle,$newNote);
+            $respuesta = $queryNotes->editNote(intval($idNote), $noteTitle,$newNote);
             var_dump($respuesta);
             if ($respuesta === true){
                 echo json_encode("true");
