@@ -31,6 +31,7 @@ function showAddNoteModal(){
     document.getElementById('titleNote').innerHTML = "Add Note";
     document.getElementById('btnEditNote').style.display = 'none';
     document.getElementById('btnDeleteNote').style.display = 'none';
+    document.getElementById('btnAddNote').style.display = 'block';
     //document.querySelector("#addEditNoteModal").modal('show');
     $("#addEditNoteModal").modal('show');
 }
@@ -73,6 +74,8 @@ function showEditNoteModal(id){
     document.getElementById('newNoteForm').value = note;
     document.getElementById('titleNote').innerHTML = "Edit Note";
     document.getElementById('btnAddNote').style.display = 'none';
+    document.getElementById('btnEditNote').style.display = 'block';
+    document.getElementById('btnDeleteNote').style.display = 'block';
     //document.querySelector("#addEditNoteModal").modal('show');
     $("#addEditNoteModal").modal('show');
     

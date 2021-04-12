@@ -21,7 +21,7 @@ try{
         );
     }
 
-    if (count($data) > 0) {
+    if ($data && count($data) > 0) {
         $json_string = json_encode($data);
         echo '{"data":'.$json_string.'}';
     }
